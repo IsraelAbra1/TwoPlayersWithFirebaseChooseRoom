@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rootRooms"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#445566">
+
+    <!-- כותרת -->
+    <TextView
+        android:id="@+id/tvTitleRooms"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Multy Player"
+        android:textColor="@android:color/white"
+        android:textSize="50sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="24dp"/>
+
+    <!-- כרטיס לבן מרכזי -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardCenter"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="24dp"
+        app:cardCornerRadius="18dp"
+        app:cardElevation="6dp"
+        app:layout_constraintTop_toBottomOf="@id/tvTitleRooms"
+        app:layout_constraintBottom_toTopOf="@id/btnBackRooms"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="18dp">
+
+            <!-- יצירת חדר -->
+            <Button
+                android:id="@+id/btnCreateRoom"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="יצירת חדר"
+                android:textStyle="bold"
+                android:textColor="#0F1A16"
+                android:backgroundTint="#7FE6C3"
+                android:elevation="6dp"/>
+
+            <!-- רווח -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="14dp"/>
+
+            <!-- שורה של id + כניסה -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/etRoomId"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:hint="id"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:background="#D9D9D9"
+                    android:padding="10dp"
+                    android:textColor="#111111"/>
+
+                <View
+                    android:layout_width="10dp"
+                    android:layout_height="match_parent"/>
+
+                <Button
+                    android:id="@+id/btnJoinRoom"
+                    android:layout_width="110dp"
+                    android:layout_height="match_parent"
+                    android:text="כניסה"
+                    android:textStyle="bold"
+                    android:textColor="#0F1A16"
+                    android:backgroundTint="#7FE6C3"
+                    android:elevation="6dp"/>
+            </LinearLayout>
+
+            <!-- רווח -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="12dp"/>
+
+            <!-- טקסט קטן להסבר -->
+            <TextView
+                android:id="@+id/tvHint"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="צור חדר כדי לקבל id, או הכנס id כדי להצטרף"
+                android:textColor="#666666"
+                android:textSize="13sp"
+                android:gravity="center"/>
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <!-- חזרה -->
+    <Button
+        android:id="@+id/btnBackRooms"
+        android:layout_width="140dp"
+        android:layout_height="48dp"
+        android:text="חזרה"
+        android:textStyle="bold"
+        android:textColor="#0F1A16"
+        android:backgroundTint="#7FE6C3"
+        android:elevation="6dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="24dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
