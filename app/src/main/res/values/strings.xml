@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">TwoPlayersWithFirebaseChooseRoom</string>
+    <string name="game_title">My Game</string>
+</resources>
