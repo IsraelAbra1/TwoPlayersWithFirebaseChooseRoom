@@ -2,6 +2,7 @@ package com.example.twoplayerswithfirebasechooseroom;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -50,10 +51,15 @@ public class RoomLobbyActivity extends AppCompatActivity {
         roomRef = FirebaseDatabase.getInstance().getReference("rooms").child(roomId);
 
         // הוספת השחקן הנוכחי לרשימת השחקנים בחדר (עבור השחקן המצטרף)
-        roomRef.child("players").child(playerId).setValue(true);
+        roomRef.child("players").child(playerId).setValue(true); // יש 2 שחקנים וכל שחקן משנה את המצב שלו ל true
 
         // כפתור חזרה
-        btnBackLobby.setOnClickListener(v -> finish());
+        btnBackLobby.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         listenRoom();
     }
@@ -113,8 +119,7 @@ public class RoomLobbyActivity extends AppCompatActivity {
         i.putExtra("playerId", playerId);
         startActivity(i);
 
-        // שלא יחזרו ללובי ב-Back מתוך המשחק
-        finish();
+        finish();  // שלא יחזרו ללובי ב-Back מתוך המשחק
     }
 
     @Override

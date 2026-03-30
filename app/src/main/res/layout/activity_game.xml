@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#445566"
+    android:background="#E2CBE0"
     android:padding="24dp">
 
     <TextView
@@ -25,7 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Game in progress"
-        android:textColor="#CCCCCC"
+        android:textColor="#03A9F4"
         android:textSize="18sp"
         app:layout_constraintTop_toBottomOf="@id/tvTurnStatus"
         app:layout_constraintStart_toStartOf="parent"

@@ -37,7 +37,7 @@ public class RoomsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_rooms);
 
         roomsRef = FirebaseDatabase.getInstance().getReference("rooms");
-        playerId = getOrCreatePlayerId();
+        playerId = UUID.randomUUID().toString();  // Generate a unique ID for the player
 
         btnQuickJoin = findViewById(R.id.btnJoinRoom);
         btnCreateRoom = findViewById(R.id.btnCreateRoom);
@@ -64,11 +64,11 @@ public class RoomsActivity extends AppCompatActivity {
         }
     }
 
-    private void quickJoin(String roomCode) {
+    private void quickJoin(String roomCode)
+    {
         // 1. If the user left the text box empty, just create a new room for them
         if (roomCode.isEmpty()) {
-            Toast.makeText(this, "No code entered. Creating a new room...", Toast.LENGTH_SHORT).show();
-            createRoomAndGoLobby();
+            Toast.makeText(this, "No code entered", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -80,7 +80,7 @@ public class RoomsActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
                     // Room found! Extract the real Firebase ID
-                    DataSnapshot roomSnap = snapshot.getChildren().iterator().next();
+                    DataSnapshot roomSnap = snapshot.getChildren().iterator().next();// "קח את הפריט הראשון שמצאת ברשימה ושמור אותו במשתנה בשם roomSnap".
                     String realRoomId = roomSnap.getKey();
 
                     // Check if the room is still waiting for players
@@ -105,7 +105,7 @@ public class RoomsActivity extends AppCompatActivity {
     }
 
     private void createRoomAndGoLobby() {
-        String roomId = roomsRef.push().getKey();
+        String roomId = roomsRef.push().getKey(); // Create a new room ID in the Firebase
         if (roomId == null) {
             Toast.makeText(this, "שגיאה ביצירת חדר", Toast.LENGTH_SHORT).show();
             return;
@@ -141,15 +141,8 @@ public class RoomsActivity extends AppCompatActivity {
         i.putExtra("roomId", roomId);
         i.putExtra("playerId", playerId);
         startActivity(i);
+
+        finish(); // never return to this activity
     }
 
-    private String getOrCreatePlayerId() {
-        SharedPreferences sp = getSharedPreferences("taki_prefs", MODE_PRIVATE);
-        String id = sp.getString("playerId", null);
-        if (id == null) {
-            id = UUID.randomUUID().toString();
-            sp.edit().putString("playerId", id).apply();
-        }
-        return id;
-    }
 }
